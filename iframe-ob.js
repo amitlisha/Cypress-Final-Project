@@ -58,6 +58,7 @@ function printNumber() {
   if ((inputMain.value != "") && (parseInt(inputMain.value) <= 20) && (parseInt(inputMain.value) >= 1)) {
     document.getElementById("true-random-integer-generator-result").innerHTML =
       inputMain.value;
+    document.amit = xmlHttp.responseText;
   } else {
     var trngresponse = xmlHttp.responseText;
     document.getElementById(
