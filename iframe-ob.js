@@ -1,4 +1,3 @@
-console.log("amit123123");
 var inputMain;
 window.onload = () => {
   var span = document.getElementById(
@@ -9,9 +8,9 @@ window.onload = () => {
   input.autocomplete = "off";
   inputMain = input;
   span.append(input);
-  document.getElementById(
-    "true-random-integer-generator-button"
-  ).style.display = "inline";
+  // document.getElementById(
+  //   "true-random-integer-generator-button"
+  // ).style.display = "inline";
 };
 var xmlHttp, begin;
 function getTrueRandomInteger(min, max) {
@@ -55,15 +54,37 @@ function updateTrngDisplayAjax() {
   }
 }
 function printNumber() {
-  if ((inputMain.value != "") && (parseInt(inputMain.value) <= 20) && (parseInt(inputMain.value) >= 1)) {
+  if (
+    inputMain.value != "" &&
+    parseInt(inputMain.value) <=
+      document.getElementById("true-random-integer-generator-max").value &&
+    parseInt(inputMain.value) >=
+      document.getElementById("true-random-integer-generator-min").value
+  ) {
+    var trngresponse = xmlHttp.responseText;
+    trngresponse = trngresponse.substring(58);
+    if (trngresponse[0] == "/") {
+      trngresponse = "<" + trngresponse;
+    }
+    var position = 62;
+    trngresponse = [
+      trngresponse.slice(0, position),
+      "<br>",
+      trngresponse.slice(position),
+    ].join("");
+    trngresponse =
+      "<center><span style='font-size:100%;font-weight:bold;'>" +
+      inputMain.value +
+      "<br>" +
+      trngresponse;
+
     document.getElementById("true-random-integer-generator-result").innerHTML =
-      inputMain.value;
-    document.amit = xmlHttp.responseText;
+      trngresponse;
   } else {
     var trngresponse = xmlHttp.responseText;
-    document.getElementById(
-      "true-random-integer-generator-result"
-    ).innerHTML = trngresponse;
+    trngresponse = trngresponse.replaceAll("\n", "<br>");
+    document.getElementById("true-random-integer-generator-result").innerHTML =
+      trngresponse;
   }
 }
 // var trngresponse = xmlHttp.responseText;
