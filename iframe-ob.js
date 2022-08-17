@@ -1,8 +1,6 @@
 var inputMain;
 window.onload = () => {
-  var span = document.getElementById(
-    "true-random-integer-generator-max-button-span"
-  );
+  var span = $("[id*='max-button-span']");
   var input = document.createElement("input");
   input.id = "numInput";
   input.autocomplete = "off";
